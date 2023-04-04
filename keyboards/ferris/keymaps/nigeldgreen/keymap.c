@@ -30,8 +30,6 @@ enum {
     I3_QUT,
     I3_TAB,
     I3_WIN, /* reset window tiling */
-    TD_SL,
-    TD_SR,
     TD_1,
     TD_2,
     TD_3,
@@ -49,31 +47,31 @@ enum ferris_layers {
   _NUMBERS,
   _NAV,
 };
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
-    TD(I3_QUT),  TD(I3_TAB),  TD(I3_WIN),  TD(I3_RST),  KC_T,                  KC_Y,  KC_U,        KC_I,        KC_O,        KC_P,
-    KC_A,        LT(3, KC_S), LT(2, KC_D), LT(1, KC_F), KC_G,                  KC_H,  LT(1, KC_J), LT(2, KC_K), LT(3, KC_L), KC_SCLN,
-    SFT_T(KC_Z), KC_X,        KC_C,        KC_V,        KC_B,                  KC_N,  KC_M,        KC_COMM,     KC_DOT,      KC_LSFT,
-                                CTL_T(KC_TAB), GUI_T(KC_ESC),                  MEH_T(KC_ENT), KC_SPC
+    TD(I3_QUT),  TD(I3_TAB),  TD(I3_WIN),  TD(I3_RST),  KC_T,    KC_Y,  KC_U,        KC_I,        KC_O,        KC_P,
+    KC_A,        LT(3, KC_S), LT(2, KC_D), LT(1, KC_F), KC_G,    LT(1, KC_J),  MEH_T(KC_ENT), LT(2, KC_K), LT(3, KC_L), KC_SCLN,
+    SFT_T(KC_Z), KC_X,        KC_C,        KC_V,        KC_B,    KC_M,  KC_COMM,        KC_SPC,     KC_LSFT,      KC_H,
+                                GUI_T(KC_ESC), CTL_T(KC_TAB),    KC_DOT, KC_N
   ),
-
   [_SYMBOLS] = LAYOUT(
-    KC_GRV,  KC_DLR,  KC_NUBS,    KC_NUHS,    KC_LCBR,                 KC_RCBR, S(KC_MINS), KC_MINS,    KC_EQL,  KC_PAST,
-    KC_NO,   KC_PERC, KC_EXLM,    KC_QUES,    KC_LPRN,                 KC_RPRN, KC_QUOT,    S(KC_2),    KC_CIRC, C(KC_6),
-    KC_TRNS, KC_AMPR, S(KC_NUBS), S(KC_QUOT), KC_LBRC,                 KC_RBRC, S(KC_NUHS), KC_SLSH,    S(KC_3), KC_TRNS,
-                                  KC_TRNS,    KC_TRNS,                 KC_DEL,  KC_BSPC
+    KC_GRV,  KC_DLR,  KC_NUBS,    KC_NUHS,    KC_LCBR,    KC_RCBR,    S(KC_MINS), KC_MINS, KC_EQL,  KC_PAST,
+    KC_NO,   KC_PERC, KC_EXLM,    KC_QUES,    KC_LPRN,    KC_QUOT,    KC_DEL,     S(KC_2), KC_CIRC, C(KC_6),
+    KC_TRNS, KC_AMPR, S(KC_NUBS), S(KC_QUOT), KC_LBRC,    S(KC_NUHS), KC_SLSH,    KC_BSPC, KC_TRNS, KC_RPRN,
+                         GUI_T(KC_ESC), CTL_T(KC_TAB),    S(KC_3), KC_RBRC
   ),
   [_NUMBERS] = LAYOUT(
     KC_F9, KC_F10, KC_F11, KC_F12,  KC_NO,                 KC_NO,     TD(TD_7), TD(TD_8), TD(TD_9), KC_NO,
-    KC_F5, KC_F6,  KC_F7,  KC_F8,   KC_NO,                 KC_NO,     TD(TD_4), TD(TD_5), TD(TD_6), KC_NO,
-    KC_F1, KC_F2,  KC_F3,  KC_F4,   KC_NO,                 KC_0, TD(TD_1), TD(TD_2), TD(TD_3), KC_TRNS,
-                         KC_TRNS, KC_TRNS,                 KC_TRNS,   KC_TRNS
+    KC_F5, KC_F6,  KC_F7,  KC_F8,   RCS(KC_F2),                 TD(TD_4), KC_TRNS, TD(TD_5), TD(TD_6), KC_NO,
+    KC_F1, KC_F2,  KC_F3,  KC_F4,   RCS(KC_F5),                 TD(TD_1), TD(TD_2), KC_TRNS, KC_TRNS, KC_NO,
+                         KC_TRNS, KC_TRNS,                 TD(TD_3),   KC_0
   ),
   [_NAV] = LAYOUT(
-    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                 KC_PGUP, KC_NO,     KC_NO, KC_NO,     KC_NO,
-    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                 TD(TD_SL), KC_DOWN, KC_UP, TD(TD_SR), KC_HOME,
-    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                 KC_PGDN, KC_NO,     KC_NO, KC_NO,     KC_END,
-                     KC_TRNS, KC_TRNS,                 KC_TRNS, KC_TRNS
+    KC_NO, KC_NO, RCS(KC_PGUP), C(KC_PGUP), QK_BOOTLOADER,  KC_PGUP, KC_NO,     KC_NO, KC_NO,     KC_NO,
+    KC_LCTL, KC_NO, RCS(KC_PGDN), C(KC_PGDN), KC_NO,          KC_DOWN, SGUI(KC_DOT), KC_UP, KC_RIGHT, KC_HOME,
+    KC_LSFT, KC_NO, KC_NO,        KC_NO,      KC_NO,          KC_NO, KC_NO,     G(KC_RIGHT), KC_END,     KC_LEFT,
+                     SGUI(KC_COMM), G(KC_LEFT),             KC_TRNS, KC_PGDN
   )
 };
 
@@ -129,8 +127,6 @@ tap_dance_action_t tap_dance_actions[] = {
     [I3_QUT] = ACTION_TAP_DANCE_FN_KEYCODE(process_sgui_key, KC_Q),
     [I3_TAB] = ACTION_TAP_DANCE_FN_KEYCODE(process_sgui_key, KC_W),
     [I3_WIN] = ACTION_TAP_DANCE_FN_KEYCODE(process_gui_key, KC_E),
-    [TD_SL] = ACTION_TAP_DANCE_DOUBLE(KC_LEFT, SGUI(KC_COMM)),
-    [TD_SR] = ACTION_TAP_DANCE_DOUBLE(KC_RIGHT, SGUI(KC_DOT)),
     [TD_1] = ACTION_TAP_DANCE_FN_KEYCODE(process_num_key, KC_1),
     [TD_2] = ACTION_TAP_DANCE_FN_KEYCODE(process_num_key, KC_2),
     [TD_3] = ACTION_TAP_DANCE_FN_KEYCODE(process_num_key, KC_3),
