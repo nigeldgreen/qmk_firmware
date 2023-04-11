@@ -1,14 +1,32 @@
 #include QMK_KEYBOARD_H
-#define COMBO_COUNT 3
+#define _MEH OSM(MOD_MEH)
+#define _ALT OSM(MOD_LALT)
+#define _SGUI OSM(MOD_LSFT | MOD_LGUI)
+#define _SCTL OSM(MOD_LSFT | MOD_LCTL)
+#define _GUI OSM(MOD_LGUI)
+
+#define COMBO_COUNT 9
 uint16_t COMBO_LEN = COMBO_COUNT;
 
+const uint16_t PROGMEM cmb_esc[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM cmb_tab[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM cmb_ent[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM cmb_esc[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM mpd_prv[] = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM mpd_nxt[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM mpd_tgl[] = {KC_W, KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM pctl_prv[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM pctl_nxt[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM pctl_tgl[] = {KC_X, KC_C, KC_V, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(cmb_tab, KC_TAB),
     COMBO(cmb_ent, KC_ENT),
     COMBO(cmb_esc, KC_ESC),
+    COMBO(mpd_prv, MEH(KC_W)),
+    COMBO(mpd_nxt, MEH(KC_R)),
+    COMBO(mpd_tgl, MEH(KC_E)),
+    COMBO(pctl_prv, MEH(KC_X)),
+    COMBO(pctl_nxt, MEH(KC_V)),
+    COMBO(pctl_tgl, MEH(KC_C)),
 };
 
 enum ferris_layers {
@@ -18,12 +36,6 @@ enum ferris_layers {
   _NAV,
   _FNKEYS,
 };
-
-#define _MEH OSM(MOD_MEH)
-#define _ALT OSM(MOD_LALT)
-#define _SGUI OSM(MOD_LSFT | MOD_LGUI)
-#define _SCTL OSM(MOD_LSFT | MOD_LCTL)
-#define _GUI OSM(MOD_LGUI)
 
 /* RIGHT HAND LAYOUT */
 /*     Y   U   I   O   P */
@@ -35,14 +47,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
     KC_Q,    KC_W,       KC_E,         KC_R,       KC_T,              KC_Y,  KC_U,            KC_I,     KC_O,      KC_P,
     KC_A,    KC_S,       KC_D,         KC_F,       KC_G,              KC_J,  MO(_NUMBERS),    KC_K,     KC_L,      KC_SCLN,
-    KC_LSFT, KC_X,       KC_C,         KC_V,       KC_B,              KC_M,  KC_COMM,         KC_SPC,   KC_LSFT,   KC_H,
+    KC_LSFT, KC_X,       KC_C,         KC_V,       KC_B,              KC_M,  KC_COMM,         KC_SPC,   KC_RSFT,   KC_H,
                                   MO(_NUMBERS), KC_LCTL,              KC_DOT, KC_N
   ),
   [_NUMBERS] = LAYOUT(
-    KC_NO,   KC_NO,   KC_NO,        KC_NO,        KC_NO,              KC_LEFT, KC_7,         KC_8,    KC_9,    KC_RIGHT,
-    _MEH,    _ALT,    _SGUI,        _GUI,      MO(_NAV),              KC_4,    MO(_SYMBOLS), KC_5,    KC_6,    KC_NO,
-    KC_TRNS, KC_Z,    KC_NO,        KC_NO,       KC_DEL,              KC_1,    KC_2,         KC_BSPC, KC_TRNS, MO(_FNKEYS),
-                                  MO(_SYMBOLS), KC_LCTL,              KC_3,    KC_0
+    KC_NO,   KC_NO,   SGUI(KC_MINS), G(KC_MINS),   KC_NO,             KC_LEFT, KC_7,         KC_8,    KC_9,    KC_RIGHT,
+    _MEH,    _ALT,    _SGUI,         _GUI,      MO(_NAV),             KC_4,    MO(_SYMBOLS), KC_5,    KC_6,    KC_NO,
+    KC_TRNS, KC_Z,    _SCTL,         KC_NO,       KC_DEL,             KC_1,    KC_2,         KC_BSPC, KC_TRNS, MO(_FNKEYS),
+                                   MO(_SYMBOLS), KC_LCTL,             KC_3,    KC_0
   ),
   [_SYMBOLS] = LAYOUT(
     KC_GRV,  KC_DLR,  KC_PLUS,      KC_NUHS,    KC_LCBR,              KC_RCBR,    S(KC_MINS), KC_MINS, KC_EQL,  KC_PAST,
