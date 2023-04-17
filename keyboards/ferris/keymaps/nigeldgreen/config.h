@@ -35,8 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 // Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 200
+#define TAPPING_TERM 1000
 #define IGNORE_MOD_TAP_INTERRUPT
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+
 #undef DIRECT_PINS
 #define DIRECT_PINS { \
     { D7, F7, F6, F5, F4 }, \
