@@ -1,0 +1,60 @@
+#include QMK_KEYBOARD_H
+
+#define _CTLSPC C(KC_SPC)
+#define _PIPE S(KC_NUBS)
+#define _ATSIGN S(KC_QUOT)
+#define _UNDSCR S(KC_MINS)
+#define _TILDE S(KC_NUHS)
+#define _ALTENT ALT_T(KC_ENT)
+#define _CTLTAB CTL_T(KC_TAB)
+#define _GUIESC GUI_T(KC_ESC)
+#define _SYM_F LT(_SYM, KC_F)
+#define _NUM_G LT(_NUM, KC_G)
+#define _I3_D LT(_I3, KC_D)
+#define _NAV_S LT(_NAV, KC_S)
+#define _SYM_J LT(_SYM, KC_J)
+#define _NUM_H LT(_NUM, KC_H)
+#define _I3_K LT(_I3, KC_K)
+#define _NAV_L LT(_NAV, KC_L)
+
+enum ferris_layers {
+  _QWER,
+  _SYM,
+  _NUM,
+  _NAV,
+  _I3,
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  [_QWER] = LAYOUT(
+      KC_Q,     KC_W,     KC_E,       KC_R,      KC_T,             KC_Y,      KC_U,       KC_I,    KC_O,     KC_P,
+      KC_A,   _NAV_S,    _I3_D,     _SYM_F,    _NUM_G,             _SYM_J,    _ALTENT,    _I3_K,   _NAV_L,   KC_SCLN,
+   KC_LSFT,     KC_X,     KC_C,       KC_V,      KC_B,             KC_M,      KC_COMM,    KC_SPC,  KC_RSFT,  _NUM_H,
+                                   _GUIESC,   _CTLTAB,             KC_DOT,    KC_N
+  ),
+  [_NUM] = LAYOUT(
+     KC_NO,    KC_F7,     KC_F8,     KC_F9,    KC_F10,             KC_PGUP,   KC_7,       KC_8,   KC_9,      KC_HOME,
+     KC_NO,    KC_F4,     KC_F5,     KC_F6,    KC_F11,             KC_4,      KC_TRNS,    KC_5,   KC_6,      KC_END,
+   KC_TRNS,    KC_F1,     KC_F2,     KC_F3,    KC_F12,             KC_1,      KC_2,       KC_0,   KC_TRNS,   KC_Z,
+                                   KC_TRNS,   KC_TRNS,             KC_3,      KC_PGDN
+  ),
+  [_SYM] = LAYOUT(
+    KC_GRV,   KC_DLR,   KC_PLUS,   KC_NUHS,   KC_LCBR,             KC_RCBR,   _UNDSCR,    KC_MINS, KC_EQL,   KC_PAST,
+   S(KC_3),  KC_PERC,   KC_EXLM,   KC_QUES,   KC_LPRN,             KC_QUOT,   KC_DEL,     S(KC_2), KC_CIRC,  KC_NO,
+   KC_TRNS,  KC_AMPR,     _PIPE,   _ATSIGN,   KC_LBRC,             _TILDE,    KC_SLSH,    KC_BSPC, KC_TRNS,  KC_RPRN,
+                                   KC_TRNS,   KC_TRNS,             KC_NUBS,   KC_RBRC
+  ),
+  [_NAV] = LAYOUT(
+     KC_NO,    KC_NO,     KC_NO,     KC_NO,     KC_NO,             KC_PGUP,   KC_HOME,    KC_NO,   KC_NO,    KC_NO,
+     KC_NO,    KC_NO,     KC_NO,   QK_BOOT,     KC_NO,             KC_DOWN,   KC_NO,      KC_UP,   KC_RIGHT, KC_NO,
+   KC_TRNS,    KC_NO,     KC_NO,     KC_NO,     KC_NO,             KC_END,    KC_NO,      KC_NO,   KC_NO,    KC_LEFT,
+                                   KC_TRNS,   KC_TRNS,             KC_NO,     KC_PGDN
+  ),
+  [_I3] = LAYOUT(
+     KC_NO,    KC_NO,     KC_NO,     KC_NO,     KC_NO,             KC_NO,     G(KC_7),    G(KC_8), G(KC_9),  KC_NO,
+     KC_NO,    KC_NO,     KC_NO,     KC_NO,     KC_NO,             G(KC_4),   KC_NO,      G(KC_5), G(KC_6),  KC_NO,
+     KC_NO,    KC_NO,     KC_NO,     KC_NO,     KC_NO,             G(KC_1),   G(KC_2),    G(KC_0), KC_NO,    _CTLSPC,
+                                   KC_TRNS,   KC_LSFT,             G(KC_3),   KC_NO
+  ),
+};
+
