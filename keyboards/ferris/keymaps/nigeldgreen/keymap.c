@@ -1,9 +1,10 @@
 #include QMK_KEYBOARD_H
 
-#define COMBO_COUNT 19
+#define COMBO_COUNT 20
 uint16_t COMBO_LEN = COMBO_COUNT;
 
-const uint16_t PROGMEM cmb_leader[] = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM cmb_leader1[] = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM cmb_leader2[] = {KC_T, KC_E, COMBO_END};
 const uint16_t PROGMEM cmb_esc[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM cmb_tab[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM cmb_ent[] = {KC_S, KC_D, KC_F, COMBO_END};
@@ -23,7 +24,8 @@ const uint16_t PROGMEM cmb_i3_launch[] = {KC_X, KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM cmb_i3_tab[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM cmb_z[] = {KC_LSFT, KC_X, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(cmb_leader, QK_LEAD),
+    COMBO(cmb_leader1, QK_LEAD),
+    COMBO(cmb_leader2, QK_LEAD),
     COMBO(cmb_tab, KC_TAB),
     COMBO(cmb_ent, KC_ENT),
     COMBO(cmb_esc, KC_ESC),
@@ -138,6 +140,10 @@ tap_dance_action_t tap_dance_actions[] = {
 #define _ATSIGN S(KC_QUOT)
 #define _UNDSCR S(KC_MINS)
 #define _TILDE S(KC_NUHS)
+#define _SYMTAB LT(_SYM1, KC_TAB)
+#define _NUMESC LT(_NUM, KC_ESC)
+#define _SYMSPC LT(_SYM2, KC_SPC)
+#define _FUNENT LT(_FUN, KC_ENT)
 
 enum ferris_layers {
   _QWER,
@@ -156,9 +162,9 @@ enum ferris_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWER] = LAYOUT(
     KC_Q,      KC_W,      KC_E,     KC_R,        KC_T,             KC_Y,      KC_U,       KC_I,    KC_O,     KC_P,
-    KC_A,      KC_S,      KC_D,     KC_F,        KC_G,             KC_J,      MO(_SYM2),  KC_K,    KC_L,     KC_SCLN,
-    KC_LSFT,   KC_X,      KC_C,     KC_V,        KC_B,             KC_M,      KC_COMM,    KC_SPC,  KC_RSFT,  KC_H,
-                                 MO(_NUM),  MO(_SYM1),            KC_DOT,    KC_N
+    KC_A,      KC_S,      KC_D,     KC_F,        KC_G,             KC_J,      _FUNENT,    KC_K,    KC_L,     KC_SCLN,
+    KC_LSFT,   KC_X,      KC_C,     KC_V,        KC_B,             KC_M,      KC_COMM,    _SYMSPC, KC_RSFT,  KC_H,
+                                 _NUMESC,     _SYMTAB,            KC_DOT,    KC_N
   ),
   [_CMAK] = LAYOUT(
     KC_Q,      KC_W,      KC_F,      KC_P,       KC_B,             KC_J,      KC_L,       KC_U,    KC_Y,     KC_SCLN,
