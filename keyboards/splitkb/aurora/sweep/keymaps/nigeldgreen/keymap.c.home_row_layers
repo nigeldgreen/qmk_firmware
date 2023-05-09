@@ -1,0 +1,118 @@
+
+#include QMK_KEYBOARD_H
+
+enum sweep_layers {
+    _QWER,
+    _CMAK,
+    _NUM,
+    _SYM,
+    _NAV,
+    _I3,
+};
+
+#define COMBO_COUNT 8
+uint16_t COMBO_LEN = COMBO_COUNT;
+
+const uint16_t PROGMEM cmb_enter[] = {LT(_NAV, KC_S), LT(_I3, KC_D), LT(_SYM, KC_F), COMBO_END};
+const uint16_t PROGMEM cmb_esc[] = {LT(_NAV, KC_S), LT(_I3, KC_D), COMBO_END};
+const uint16_t PROGMEM cmb_bsp[] = {KC_W, KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM cmb_del[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM cmb_copy[] = {LT(_SYM, KC_F), LT(_NUM, KC_G), COMBO_END};
+const uint16_t PROGMEM cmb_paste[] = {KC_V, KC_B, COMBO_END};
+const uint16_t PROGMEM cmb_cut[] = {KC_R, KC_T, COMBO_END};
+const uint16_t PROGMEM cmb_undo[] = {LT(_NUM, KC_H), LT(_SYM, KC_J), COMBO_END};
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(cmb_enter, KC_ENT),
+    COMBO(cmb_esc, KC_ESC),
+    COMBO(cmb_bsp, KC_BSPC),
+    COMBO(cmb_del, KC_DEL),
+    COMBO(cmb_copy, C(KC_C)),
+    COMBO(cmb_paste, C(KC_V)),
+    COMBO(cmb_cut, C(KC_X)),
+    COMBO(cmb_undo, C(KC_Z)),
+};
+
+void leader_end_user(void) {
+    if (leader_sequence_two_keys(KC_R, KC_R)) {
+        reset_keyboard();
+        /* kitty maps */
+    } else if (leader_sequence_two_keys(KC_K, KC_C)) {
+        tap_code16(RCS(KC_F2));
+    } else if (leader_sequence_two_keys(KC_K, KC_R)) {
+        tap_code16(RCS(KC_F5));
+        /* i3 quit */
+    } else if (leader_sequence_one_key(KC_Q)) {
+        tap_code16(S(G(KC_Q)));
+        /* i3 set windows to tab */
+    } else if (leader_sequence_one_key(KC_W)) {
+        tap_code16(S(G(KC_W)));
+        /* i3 reset windows */
+    } else if (leader_sequence_one_key(KC_E)) {
+        tap_code16(G(KC_E));
+        /* i3 remove window from scratch */
+    } else if (leader_sequence_one_key(KC_SPC)) {
+        tap_code16(S(G(KC_SPC)));
+        /* i3 restart */
+    } else if (leader_sequence_one_key(KC_R)) {
+        tap_code16(S(G(KC_R)));
+        /* i3 send workspace to other monitor */
+    } else if (leader_sequence_one_key(KC_H)) {
+        tap_code16(S(G(KC_COMM)));
+    }
+}
+
+#define _CTLSPC C(KC_SPC)
+#define _PIPE S(KC_NUBS)
+#define _ATSIGN S(KC_QUOT)
+#define _UNDSCR S(KC_MINS)
+#define _TILDE S(KC_NUHS)
+#define _ALTENT ALT_T(KC_ENT)
+#define _CTLTAB CTL_T(KC_TAB)
+#define _GUIESC GUI_T(KC_ESC)
+#define _SYM_F LT(_SYM, KC_F)
+#define _NUM_G LT(_NUM, KC_G)
+#define _I3_D LT(_I3, KC_D)
+#define _NAV_S LT(_NAV, KC_S)
+#define _SYM_J LT(_SYM, KC_J)
+#define _NUM_H LT(_NUM, KC_H)
+#define _I3_K LT(_I3, KC_K)
+#define _NAV_L LT(_NAV, KC_L)
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  [_QWER] = LAYOUT(
+        KC_Q,    KC_W,     KC_E,      KC_R,      KC_T,             KC_Y,      KC_U,       KC_I,     KC_O,     KC_P,
+        KC_A,  _NAV_S,    _I3_D,    _SYM_F,    _NUM_G,             _NUM_H,    _SYM_J,     _I3_K,    _NAV_L,    KC_SCLN,
+     KC_LSFT,    KC_X,     KC_C,      KC_V,      KC_B,             KC_N,      KC_M,       KC_COMM,  KC_DOT,    KC_RSFT,
+                                   _CTLTAB,   _GUIESC,             _ALTENT,   KC_SPC
+  ),
+  [_CMAK] = LAYOUT(
+    KC_Q,      KC_W,      KC_F,      KC_P,       KC_B,             KC_J,      KC_L,       KC_U,    KC_Y,     KC_SCLN,
+    KC_A,      KC_R,      KC_S,      KC_T,       KC_G,             KC_M,      KC_N,       KC_E,    KC_I,     KC_O,
+    KC_LSFT,   KC_X,      KC_C,      KC_D,       KC_V,             KC_K,      KC_H,      KC_COMM,    KC_SPC,  KC_RSFT,
+                                   _CTLTAB,   _GUIESC,             _ALTENT,   KC_SPC
+  ),
+  [_NUM] = LAYOUT(
+     KC_NO,    KC_F7,     KC_F8,     KC_F9,    KC_F10,             KC_NO,     KC_7,      KC_8,      KC_9,      KC_NO,
+     KC_NO,    KC_F4,     KC_F5,     KC_F6,    KC_F11,             KC_NO,     KC_4,      KC_5,      KC_6,      KC_NO,
+   KC_TRNS,    KC_F1,     KC_F2,     KC_F3,    KC_F12,             KC_NO,     KC_1,      KC_2,      KC_3,      KC_TRNS,
+                                   KC_TRNS,   KC_TRNS,             KC_TRNS,   KC_0
+  ),
+  [_SYM] = LAYOUT(
+    KC_GRV,   KC_DLR,   KC_PLUS,   KC_NUHS,   KC_LCBR,             KC_RCBR,   _UNDSCR,    KC_MINS,  KC_EQL,   KC_PAST,
+   S(KC_3),  KC_PERC,   KC_EXLM,   KC_QUES,   KC_LPRN,             KC_RPRN,   KC_QUOT,    S(KC_2),  KC_CIRC,  KC_NO,
+   KC_TRNS,  KC_AMPR,     _PIPE,   _ATSIGN,   KC_LBRC,             KC_RBRC,   _TILDE,    KC_SLSH,   KC_NUBS,  KC_TRNS,
+                                   KC_TRNS,   KC_TRNS,             KC_TRNS,   KC_BSPC
+  ),
+  [_NAV] = LAYOUT(
+     KC_NO,    KC_NO,     KC_NO,     KC_NO,   QK_BOOT,             KC_PGUP,   KC_NO,      KC_NO,    KC_NO,    KC_HOME,
+     KC_NO,    KC_NO,     KC_NO,     KC_NO,     KC_NO,             KC_LEFT,   KC_DOWN,    KC_UP,    KC_RIGHT, KC_END,
+   KC_TRNS,    KC_NO,     KC_NO,     KC_NO,     KC_NO,             KC_PGDN,   KC_NO,      KC_NO,    KC_NO,    KC_TRNS,
+                                   KC_TRNS,   KC_TRNS,             KC_TRNS,   KC_NO
+  ),
+  [_I3] = LAYOUT(
+     S(G(KC_Q)), S(G(KC_W)), KC_NO, S(G(KC_R)),  KC_NO,             KC_NO,         G(KC_7),    G(KC_8),  G(KC_9),  KC_NO,
+     KC_NO,    KC_NO,     KC_NO,    KC_LSFT,     KC_NO,             S(G(KC_COMM)), G(KC_4),    G(KC_5),  G(KC_6),  KC_NO,
+   KC_TRNS,    KC_NO,     KC_NO,    KC_NO,       KC_NO,             KC_NO,         G(KC_1),    G(KC_2),  G(KC_3),  KC_NO,
+                                    KC_TRNS,   KC_TRNS,             KC_NO,         G(KC_0)
+  ),
+};
