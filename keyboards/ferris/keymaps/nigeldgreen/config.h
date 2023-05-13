@@ -35,12 +35,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 // Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 200
+#define TAPPING_TERM 180
 #define LEADER_NO_TIMEOUT
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 250
 #define IGNORE_MOD_TAP_INTERRUPT
 #define COMBO_ONLY_FROM_LAYER 0
+
+// mousing shizz
+#define MOUSEKEY_INTERVAL 16
+#define MOUSEKEY_MAX_SPEED 8
+#define MOUSEKEY_TIME_TO_MAX 40
+#define MOUSEKEY_MOVE_DELTA 4
 
 #undef DIRECT_PINS
 #define DIRECT_PINS { \
