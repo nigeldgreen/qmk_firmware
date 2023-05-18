@@ -55,7 +55,7 @@ void leader_end_user(void) {
         tap_code16(G(KC_5));
     } else if (leader_sequence_one_key(KC_L)) {
         tap_code16(G(KC_6));
-    } else if (leader_sequence_one_key(KC_U)) {
+      else if (leader_sequence_one_key(KC_U)) {
         tap_code16(G(KC_7));
     } else if (leader_sequence_one_key(KC_I)) {
         tap_code16(G(KC_8));
