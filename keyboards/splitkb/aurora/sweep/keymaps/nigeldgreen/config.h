@@ -17,11 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #pragma once
-#define TAPPING_TERM 180
-/* #define HOLD_ON_OTHER_KEY_PRESS */
-/* #define RETRO_TAPPING */
+#define TAPPING_TERM 200
+#define HOLD_ON_OTHER_KEY_PRESS
 #define IGNORE_MOD_TAP_INTERRUPT
 /* #define COMBO_ONLY_FROM_LAYER 0 */
+#define RETRO_TAPPING
 #define LED_CAPS_LOCK_PIN 24
 #define LED_PIN_ON_STATE 0
 
