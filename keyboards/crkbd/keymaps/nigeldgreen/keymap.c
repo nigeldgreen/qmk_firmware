@@ -90,36 +90,36 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   return rotation;
 }
 
-/* void oled_render_layer_state(void) { */
-/*     oled_write_P(PSTR("You are on the "), false); */
-/*     switch (layer_state) { */
-/*         case 0: */
-/*             oled_write_P(PSTR("QWERTY"), false); */
-/*             break; */
-/*         case 2: */
-/*             oled_write_P(PSTR("Colemak"), false); */
-/*             break; */
-/*         case 4: */
-/*             oled_write_P(PSTR("left symbols"), false); */
-/*             break; */
-/*         case 8: */
-/*             oled_write_P(PSTR("right symbols"), false); */
-/*             break; */
-/*         case 16: */
-/*             oled_write_P(PSTR("numbers"), false); */
-/*             break; */
-/*         case 32: */
-/*             oled_write_P(PSTR("function keys"), false); */
-/*             break; */
-/*         case 64: */
-/*             oled_write_P(PSTR("I3/system"), false); */
-/*             break; */
-/*         case 128: */
-/*             oled_write_P(PSTR("mouse assistance"), false); */
-/*             break; */
-/*     } */
-/*     oled_write_P(PSTR(" layer"), false); */
-/* } */
+void oled_render_layer_state(void) {
+    oled_write_P(PSTR("You are on the "), false);
+    switch (layer_state) {
+        case 0:
+            oled_write_P(PSTR("QWERTY"), false);
+            break;
+        case 2:
+            oled_write_P(PSTR("Colemak"), false);
+            break;
+        case 4:
+            oled_write_P(PSTR("left symbols"), false);
+            break;
+        case 8:
+            oled_write_P(PSTR("right symbols"), false);
+            break;
+        case 16:
+            oled_write_P(PSTR("numbers"), false);
+            break;
+        case 32:
+            oled_write_P(PSTR("function keys"), false);
+            break;
+        case 64:
+            oled_write_P(PSTR("I3/system"), false);
+            break;
+        case 128:
+            oled_write_P(PSTR("mouse assistance"), false);
+            break;
+    }
+    oled_write_P(PSTR(" layer"), false);
+}
 
 void oled_render_logo(void) {
     static const char PROGMEM crkbd_logo[] = {
@@ -132,9 +132,11 @@ void oled_render_logo(void) {
 
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        oled_render_logo();
+        /* oled_render_logo(); */
+        oled_render_layer_state();
     } else {
-        oled_render_logo();
+        /* oled_render_logo(); */
+        oled_render_layer_state();
     }
     return false;
 }
