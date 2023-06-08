@@ -1,5 +1,7 @@
 #include QMK_KEYBOARD_H
 #include <stdio.h>
+#include "features/layer_lock.h"
+#include "features/select_word.h"
 
 #define _MEH OSM(MOD_MEH)
 #define _ALT OSM(MOD_LALT)
@@ -32,17 +34,27 @@
 #define _I3STCK SGUI(KC_S)
 #define _I3MV S(G(KC_DOT))
 
+enum custom_keycodes {
+  LLOCK = SAFE_RANGE,
+  SELWD
+};
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
+  if (!process_select_word(keycode, record, SELWD)) { return false; }
+  return true;
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT(
       _QWERTY,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    _QWERTY,
        _MOUSE,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                        KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, _CMAK,
-    G(KC_SPC), KC_LSFT,    KC_X,    KC_C,    KC_V,    KC_B,                        KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_RSFT, KC_CAPS,
+        LLOCK, KC_LSFT,    KC_X,    KC_C,    KC_V,    KC_B,                        KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_RSFT, SELWD,
                                            _I3DEL, _SYMTAB, _NUMESC,     _FUNENT,  _SYMSPC,  MO(6)
   ),
   [1] = LAYOUT(
       _QWERTY,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                        KC_J,     KC_L,     KC_U,    KC_Y,    KC_SCLN, _QWERTY,
        _MOUSE,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                        KC_M,     KC_N,     KC_E,    KC_I,    KC_O,    _CMAK,
-         KC_Z, KC_LSFT,    KC_X,    KC_C,    KC_D,    KC_V,                        KC_K,     KC_H,     KC_COMM, KC_DOT,  KC_RSFT, KC_CAPS,
+        LLOCK, KC_LSFT,    KC_X,    KC_C,    KC_D,    KC_V,                        KC_K,     KC_H,     KC_COMM, KC_DOT,  KC_RSFT, SELWD,
                                            _I3DEL, _SYMTAB, _NUMESC,     _FUNENT,  _SYMSPC,  MO(6)
   ),
   [2] = LAYOUT(

@@ -3,3 +3,6 @@
 OLED_ENABLE     = yes
 OLED_DRIVER     = SSD1306
 LTO_ENABLE      = yes
+
+SRC += features/layer_lock.c
+SRC += features/select_word.c
