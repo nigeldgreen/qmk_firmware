@@ -20,10 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-//#define USE_MATRIX_I2C
-
-/* Select hand configuration */
-
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
@@ -31,10 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 200
 #define HOLD_ON_OTHER_KEY_PRESS
 #define IGNORE_MOD_TAP_INTERRUPT
-/* #define COMBO_ONLY_FROM_LAYER 0 */
-/* #define RETRO_TAPPING */
+#define RETRO_TAPPING_PER_KEY
 
-/* #define LEADER_NO_TIMEOUT */
-/* #define LEADER_PER_KEY_TIMING */
-/* #define LEADER_TIMEOUT 250 */
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
