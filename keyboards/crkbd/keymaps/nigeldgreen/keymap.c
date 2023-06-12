@@ -1,7 +1,6 @@
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 #include "features/layer_lock.h"
-#include "features/select_word.h"
 
 #define _MEH OSM(MOD_MEH)
 #define _ALT OSM(MOD_LALT)
