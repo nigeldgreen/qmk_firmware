@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 #include <stdio.h>
-#include "features/layer_lock.h"
 
 #define _MEH OSM(MOD_MEH)
 #define _ALT OSM(MOD_LALT)
@@ -24,13 +23,6 @@
 #define _TILDE S(KC_NUHS)
 #define _SFTZ SFT_T(KC_Z)
 
-enum custom_keycodes {
-  LLOCK = SAFE_RANGE,
-};
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
-  return true;
-}
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case _SYMSPC:

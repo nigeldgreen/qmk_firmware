@@ -4,5 +4,3 @@
 # LEADER_ENABLE = yes
 
 BOOTLOADER = rp2040
-
-SRC += features/layer_lock.c
