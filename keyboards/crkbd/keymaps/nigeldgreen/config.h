@@ -20,13 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define MASTER_LEFT
-// #define MASTER_RIGHT
-// #define EE_HANDS
+/* #define MASTER_LEFT */
+/* #define MASTER_RIGHT */
+#define EE_HANDS
 
 #define TAPPING_TERM 200
 #define HOLD_ON_OTHER_KEY_PRESS
-#define IGNORE_MOD_TAP_INTERRUPT
 #define RETRO_TAPPING_PER_KEY
 
-#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+/* #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c" */
