@@ -1,5 +1,25 @@
 #include QMK_KEYBOARD_H
 #include <stdio.h>
+#define _MEH OSM(MOD_MEH)
+#define _ALT OSM(MOD_LALT)
+#define _SALT OSM(MOD_LSFT | MOD_LALT)
+#define _LCTL OSM(MOD_LCTL)
+#define _SCTL OSM(MOD_LSFT | MOD_LCTL)
+#define _GUI OSM(MOD_LGUI)
+#define _SGUI OSM(MOD_LSFT | MOD_LGUI)
+#define _TMUX C(KC_F)
+#define _QWERTY DF(0)
+#define _COLEMAK DF(1)
+#define _NUM MO(4)
+#define _SYMTAB LT(3, KC_TAB)
+#define _SYMSPC LT(2, KC_SPC)
+#define _NUMESC LT(4, KC_ESC)
+#define _FUNENT LT(5, KC_ENT)
+#define _PIPE S(KC_NUBS)
+#define _ATSIGN S(KC_QUOT)
+#define _UNDSCR S(KC_MINS)
+#define _TILDE S(KC_NUHS)
+#define _SFTZ SFT_T(KC_Z)
 
 const uint16_t PROGMEM cmb_leader[] = {KC_F, KC_J, COMBO_END};
 const uint16_t PROGMEM cmb_delete[] = {KC_E, KC_R, COMBO_END};
@@ -83,27 +103,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-#define _MEH OSM(MOD_MEH)
-#define _ALT OSM(MOD_LALT)
-#define _SALT OSM(MOD_LSFT | MOD_LALT)
-#define _LCTL OSM(MOD_LCTL)
-#define _SCTL OSM(MOD_LSFT | MOD_LCTL)
-#define _GUI OSM(MOD_LGUI)
-#define _SGUI OSM(MOD_LSFT | MOD_LGUI)
-#define _TMUX C(KC_F)
-#define _QWERTY DF(0)
-#define _COLEMAK DF(1)
-#define _NUM MO(4)
-#define _SYMTAB LT(3, KC_TAB)
-#define _SYMSPC LT(2, KC_SPC)
-#define _NUMESC LT(4, KC_ESC)
-#define _FUNENT LT(5, KC_ENT)
-#define _PIPE S(KC_NUBS)
-#define _ATSIGN S(KC_QUOT)
-#define _UNDSCR S(KC_MINS)
-#define _TILDE S(KC_NUHS)
-#define _SFTZ SFT_T(KC_Z)
-
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case _SYMSPC:
@@ -127,21 +126,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  _SYMTAB, _NUMESC,        _FUNENT, _SYMSPC
   ),
   [2] = LAYOUT(
-       KC_GRV, KC_PLUS, KC_NUHS, KC_LCBR, KC_RCBR,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      KC_NUBS, KC_PAST, KC_EXLM, KC_LPRN, KC_RPRN,        _TMUX,   _LCTL,   _GUI,    _ALT,    _MEH,
-      S(KC_3), KC_AMPR, _ATSIGN, KC_LBRC, KC_RBRC,        KC_NO,   _SCTL,   _SGUI,   _SALT,   KC_TRNS,
+       KC_GRV, KC_PERC, KC_NUHS, KC_AMPR, KC_PLUS,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      KC_NUBS, KC_PAST, KC_EXLM, KC_QUOT, S(KC_2),        _TMUX,   _LCTL,   _GUI,    _ALT,    _MEH,
+      S(KC_3),   _PIPE, _ATSIGN,  KC_DLR,  _LOREM,        KC_NO,   _SCTL,   _SGUI,   _SALT,   KC_TRNS,
                                  KC_HOME,  KC_END,        KC_NO, KC_TRNS
   ),
   [3] = LAYOUT(
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_DLR,   _UNDSCR,  KC_MINS, KC_EQL,  S(KC_2),
-         _MEH,    _ALT,    _GUI,   _LCTL,   _TMUX,        KC_LEFT,  KC_DOWN,  KC_UP,   KC_RIGHT,KC_QUOT,
-      KC_TRNS,   _SALT,   _SGUI,   _SCTL,   KC_NO,        KC_PERC,  _TILDE,   KC_SLSH, KC_QUES, _PIPE,
+        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_PGUP,  _UNDSCR,  KC_MINS, KC_EQL,   KC_NO,
+         _MEH,    _ALT,    _GUI,   _LCTL,   _TMUX,        KC_LEFT,  KC_DOWN,  KC_UP,   KC_RIGHT, KC_NO,
+      KC_TRNS,   _SALT,   _SGUI,   _SCTL,   KC_NO,        KC_PGDN,  _TILDE,   KC_SLSH, KC_QUES,  KC_NO,
                                    KC_TRNS, KC_NO,        KC_DEL,   KC_BSPC
   ),
   [4] = LAYOUT(
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_LCBR,  KC_7,     KC_8,    KC_9,    KC_RCBR,
-         _MEH,    _ALT,    _GUI,   _LCTL,   _TMUX,        KC_LPRN,  KC_4,     KC_5,    KC_6,    KC_RPRN,
-      KC_TRNS,   _SALT,   _SGUI,   _SCTL,   KC_NO,        KC_LBRC,  KC_1,     KC_2,    KC_3,    KC_RBRC,
+        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,  KC_7,     KC_8,    KC_9,    KC_NO,
+         _MEH,    _ALT,    _GUI,   _LCTL,   _TMUX,        KC_NO,  KC_4,     KC_5,    KC_6,    KC_NO,
+      KC_TRNS,   _SALT,   _SGUI,   _SCTL,   KC_NO,        KC_NO,  KC_1,     KC_2,    KC_3,    KC_NO,
                                  KC_NO,   KC_TRNS,        KC_NO,    KC_0
   ),
   [5] = LAYOUT(
