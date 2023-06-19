@@ -4,6 +4,7 @@
 #define _LCTL OSM(MOD_LCTL)
 #define _SCTL OSM(MOD_LSFT | MOD_LCTL)
 #define _GUI OSM(MOD_LGUI)
+#define _MEH OSM(MOD_LSFT | MOD_LCTL | MOD_LALT)
 #define _SGUI OSM(MOD_LSFT | MOD_LGUI)
 #define _QWERTY DF(0)
 #define _COLEMAK DF(1)
@@ -112,25 +113,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [2] = LAYOUT(
        KC_GRV, KC_PERC, KC_NUHS, KC_AMPR, KC_PLUS,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      KC_NUBS, KC_PAST, KC_EXLM, KC_QUOT, S(KC_2),        KC_NO,   _LCTL,   _GUI,    _ALT,    KC_NO,
+      KC_NUBS, KC_PAST, KC_EXLM, KC_QUOT, S(KC_2),        KC_NO,   _LCTL,   _GUI,    _ALT,    _MEH,
       S(KC_3),   _PIPE, _ATSIGN,  KC_DLR,  _LOREM,        KC_NO,   _SCTL,   _SGUI,   _SALT,   KC_TRNS,
                                  KC_HOME,  KC_END,        KC_TRNS, KC_NO
   ),
   [3] = LAYOUT(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_PGUP,  _UNDSCR,  KC_MINS, KC_EQL,   KC_NO,
-         KC_NO,    _ALT,    _GUI,   _LCTL,   KC_NO,        KC_LEFT,  KC_DOWN,  KC_UP,   KC_RIGHT, KC_NO,
+         _MEH,    _ALT,    _GUI,   _LCTL,   KC_NO,        KC_LEFT,  KC_DOWN,  KC_UP,   KC_RIGHT, KC_NO,
       KC_TRNS,   _SALT,   _SGUI,   _SCTL,   KC_NO,        KC_PGDN,  _TILDE,   KC_SLSH, KC_QUES,  KC_NO,
                                    KC_TRNS, KC_NO,        MO(5),    KC_BSPC
   ),
   [4] = LAYOUT(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,  KC_7,     KC_8,    KC_9,    KC_NO,
-         KC_NO,    _ALT,    _GUI,   _LCTL,   KC_NO,        KC_NO,  KC_4,     KC_5,    KC_6,    KC_NO,
+         _MEH,    _ALT,    _GUI,   _LCTL,   KC_NO,        KC_NO,  KC_4,     KC_5,    KC_6,    KC_NO,
       KC_TRNS,   _SALT,   _SGUI,   _SCTL,   KC_NO,        KC_NO,  KC_1,     KC_2,    KC_3,    KC_NO,
                                  KC_NO,   KC_TRNS,        KC_NO,  KC_0
   ),
   [5] = LAYOUT(
         KC_NO,   KC_F7,   KC_F8,   KC_F9,  KC_F10,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      QK_BOOT,   KC_F4,   KC_F5,   KC_F6,  KC_F11,        KC_NO,   _LCTL,   _GUI,    _ALT,    KC_NO,
+      QK_BOOT,   KC_F4,   KC_F5,   KC_F6,  KC_F11,        KC_NO,   _LCTL,   _GUI,    _ALT,    _MEH,
         KC_NO,   KC_F1,   KC_F2,   KC_F3,  KC_F12,        KC_NO,   _SCTL,   _SGUI,   _SALT,   KC_TRNS,
                                      KC_NO, KC_NO,        KC_TRNS, KC_NO
   ),
@@ -146,12 +147,14 @@ void leader_end_user(void) {
         tap_code16(LGUI(S(KC_R)));
     } else if (leader_sequence_one_key(KC_S)) {
         tap_code16(LGUI(S(KC_S)));
-    } else if (leader_sequence_one_key(KC_SPC)) {
-        tap_code16(LGUI(KC_SPC));
     } else if (leader_sequence_one_key(KC_TAB)) {
         tap_code16(LGUI(KC_TAB));
     } else if (leader_sequence_one_key(KC_H)) {
         tap_code16(LGUI(S(KC_COMM)));
+    } else if (leader_sequence_one_key(KC_P)) {
+        tap_code16(LGUI(S(KC_MINS)));
+    } else if (leader_sequence_one_key(KC_SCLN)) {
+        tap_code16(LGUI(KC_MINS));
     } else if (leader_sequence_one_key(KC_M)) {
         tap_code16(LGUI(KC_1));
     } else if (leader_sequence_one_key(KC_COMM)) {
@@ -170,7 +173,7 @@ void leader_end_user(void) {
         tap_code16(LGUI(KC_8));
     } else if (leader_sequence_one_key(KC_O)) {
         tap_code16(LGUI(KC_9));
-    } else if (leader_sequence_two_keys(KC_SPC, KC_SPC)) {
+    } else if (leader_sequence_one_key(KC_SPC)) {
         tap_code16(LGUI(KC_0));
     } else if (leader_sequence_two_keys(KC_M, KC_M)) {
         tap_code16(LGUI(S(KC_1)));
