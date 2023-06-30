@@ -24,8 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* #define MASTER_RIGHT */
 #define EE_HANDS
 
-#define TAPPING_TERM 200
+#define TAPPING_TERM 180
 #define HOLD_ON_OTHER_KEY_PRESS
 #define RETRO_TAPPING_PER_KEY
-
-/* #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c" */
+#define LEADER_NO_TIMEOUT
