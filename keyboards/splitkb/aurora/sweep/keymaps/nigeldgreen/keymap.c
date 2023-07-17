@@ -64,29 +64,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define _I3SPC G(KC_SPC)
 #define _I3TAB G(KC_TAB)
 
-void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-    case 0:
-      if (pressed) {
-        tap_code16(KC_LCBR);
-        tap_code16(KC_RCBR);
-      }
-      break;
-    case 1:
-      if (pressed) {
-        tap_code16(KC_LPRN);
-        tap_code16(KC_RPRN);
-      }
-      break;
-    case 2:
-      if (pressed) {
-        tap_code16(KC_LBRC);
-        tap_code16(KC_RBRC);
-      }
-      break;
-  }
-}
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT(
          KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,        KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,
@@ -97,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [1] = LAYOUT(
        KC_GRV, KC_PERC, KC_NUHS, KC_AMPR, KC_PLUS,        KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,
       KC_NUBS, KC_PAST, KC_EXLM, KC_QUOT, S(KC_2),        KC_NO,   _LCTL,   _GUI,    _ALT,     _MEH,
-      KC_TRNS,   _PIPE, _ATSIGN,  KC_DLR,  _LOREM,        KC_NO,   _SCTL,   _SGUI,   _SALT,    KC_TRNS,
+      KC_TRNS,   _PIPE, _ATSIGN,  KC_DLR,   KC_NO,        KC_NO,   _SCTL,   _SGUI,   _SALT,    KC_TRNS,
                                   TMXPRV,  TMXNXT,        KC_TRNS, KC_NO
   ),
   [2] = LAYOUT(
@@ -120,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-const uint16_t PROGMEM cmb_leader[] = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM cmb_leader[] = {KC_A, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM cmb_cut[] = {KC_R, KC_T, COMBO_END};
 const uint16_t PROGMEM cmb_copy[] = {KC_F, KC_G, COMBO_END};
 const uint16_t PROGMEM cmb_paste[] = {KC_V, KC_B, COMBO_END};
