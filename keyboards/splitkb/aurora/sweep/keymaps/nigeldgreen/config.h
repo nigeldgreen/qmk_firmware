@@ -23,4 +23,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LED_CAPS_LOCK_PIN 24
 #define LED_PIN_ON_STATE 0
 
-#define LEADER_NO_TIMEOUT
+/* #define LEADER_NO_TIMEOUT */

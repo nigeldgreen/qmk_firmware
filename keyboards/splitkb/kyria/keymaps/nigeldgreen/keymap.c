@@ -154,6 +154,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 
 void leader_end_user(void) {
+    /* i3 window switching */
     if (leader_sequence_one_key(KC_M)) {
         tap_code16(G(KC_1));
     } else if (leader_sequence_one_key(KC_COMM)) {
@@ -170,8 +171,6 @@ void leader_end_user(void) {
         tap_code16(G(KC_7));
     } else if (leader_sequence_one_key(KC_I)) {
         tap_code16(G(KC_8));
-    } else if (leader_sequence_one_key(KC_O)) {
-        tap_code16(G(KC_9));
     } else if (leader_sequence_two_keys(KC_M, KC_M)) {
         tap_code16(S(G(KC_1)));
     } else if (leader_sequence_two_keys(KC_COMM, KC_COMM)) {
@@ -188,28 +187,39 @@ void leader_end_user(void) {
         tap_code16(S(G(KC_7)));
     } else if (leader_sequence_two_keys(KC_I, KC_I)) {
         tap_code16(S(G(KC_8)));
-    } else if (leader_sequence_one_key(KC_R)) {
-        tap_code16(S(G(KC_R)));
-    } else if (leader_sequence_one_key(KC_W)) {
-        tap_code16(S(G(KC_W)));
-    } else if (leader_sequence_one_key(KC_Q)) {
-        tap_code16(S(G(KC_Q)));
-    } else if (leader_sequence_one_key(KC_S)) {
-        tap_code16(S(G(KC_S)));
     } else if (leader_sequence_one_key(KC_H)) {
         tap_code16(S(G(KC_COMM)));
-    } else if (leader_sequence_one_key(KC_SPC)) {
-        tap_code16(G(KC_SPC));
+    /* i3 suspend and power options */
+    } else if (leader_sequence_one_key(KC_O)) {
+        tap_code16(G(KC_9));
     } else if (leader_sequence_one_key(KC_Y)) {
         tap_code16(G(KC_0));
+    /* i3 restart */
+    } else if (leader_sequence_one_key(KC_R)) {
+        tap_code16(S(G(KC_R)));
+    /* i3 quit */
+    } else if (leader_sequence_one_key(KC_Q)) {
+        tap_code16(S(G(KC_Q)));
+    /* i3 window stacking */
+    } else if (leader_sequence_one_key(KC_W)) {
+        tap_code16(S(G(KC_W)));
+    } else if (leader_sequence_one_key(KC_S)) {
+        tap_code16(S(G(KC_S)));
+    } else if (leader_sequence_one_key(KC_E)) {
+        tap_code16(G(KC_E));
+    } else if (leader_sequence_one_key(KC_SPC)) {
+        tap_code16(G(KC_SPC));
+    /* i3 manage scratch */
     } else if (leader_sequence_one_key(KC_P)) {
         tap_code16(S(G(KC_MINS)));
     } else if (leader_sequence_one_key(KC_SCLN)) {
         tap_code16(G(KC_MINS));
     } else if (leader_sequence_one_key(KC_RSFT)) {
         tap_code16(S(G(KC_SPC)));
+    /* xrandr options */
     } else if (leader_sequence_one_key(KC_X)) {
         tap_code16(G(KC_X));
+    /* kitty config and relaunch */
     } else if (leader_sequence_two_keys(KC_K, KC_C)) {
         tap_code16(S(C(KC_F2)));
     } else if (leader_sequence_two_keys(KC_K, KC_R)) {
