@@ -1,15 +1,5 @@
 #include QMK_KEYBOARD_H
 
-const uint16_t PROGMEM cmb_leader[] = {MO(3), MO(1), COMBO_END};
-const uint16_t PROGMEM cmb_cut[] = {KC_R, KC_T, COMBO_END};
-const uint16_t PROGMEM cmb_copy[] = {KC_F, KC_G, COMBO_END};
-const uint16_t PROGMEM cmb_paste[] = {KC_V, KC_B, COMBO_END};
-const uint16_t PROGMEM cmb_delete[] = {KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM cmb_backspace[] = {KC_W, KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM cmb_escape[] = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM cmb_tab[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM cmb_enter[] = {KC_S, KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM cmb_space[] = {KC_X, KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM cmb_lcbr[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM cmb_rcbr[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM cmb_cbr[] = {KC_U, KC_I, KC_O, COMBO_END};
@@ -23,16 +13,6 @@ combo_t key_combos[] = {
     COMBO_ACTION(cmb_cbr),
     COMBO_ACTION(cmb_prn),
     COMBO_ACTION(cmb_brc),
-    COMBO(cmb_leader, QK_LEAD),
-    COMBO(cmb_cut, C(KC_X)),
-    COMBO(cmb_copy, C(KC_C)),
-    COMBO(cmb_paste, C(KC_V)),
-    COMBO(cmb_delete, KC_DEL),
-    COMBO(cmb_backspace, KC_BSPC),
-    COMBO(cmb_escape, KC_ESC),
-    COMBO(cmb_tab, KC_TAB),
-    COMBO(cmb_enter, KC_ENT),
-    COMBO(cmb_space, KC_SPC),
     COMBO(cmb_lcbr, KC_LCBR),
     COMBO(cmb_rcbr, KC_RCBR),
     COMBO(cmb_lprn, KC_LPRN),
@@ -103,6 +83,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
+#define _SYMTAB LT(3, KC_TAB)
+#define _NUMESC LT(4, KC_ESC)
+#define _SYMENT LT(2, KC_ENT)
+bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case _SYMENT:
+            return true;
+        case _SYMTAB:
+            return true;
+        case _NUMESC:
+            return true;
+        default:
+            return false;
+    }
+}
+
 #define _ALT OSM(MOD_LALT)
 #define _SALT OSM(MOD_LSFT | MOD_LALT)
 #define _LCTL OSM(MOD_LCTL)
@@ -134,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,        KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,
          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,        KC_H,    KC_J,    KC_K,    KC_L,     KC_SCLN,
         _SFTZ,    KC_X,    KC_C,    KC_V,    KC_B,        KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_RSFT,
-                                   MO(3),   MO(4),        MO(2),   KC_SPC
+                                    _SYMTAB, _NUMESC,     _SYMENT, KC_SPC
   ),
   [1] = LAYOUT(
          KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,        KC_J,    KC_L,    KC_U,    KC_Y,     KC_Z,
