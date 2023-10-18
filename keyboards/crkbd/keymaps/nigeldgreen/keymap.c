@@ -31,7 +31,7 @@ const uint16_t PROGMEM cmb_enter[] = {KC_S, KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM cmb_cut[] = {KC_R, KC_T, COMBO_END};
 const uint16_t PROGMEM cmb_copy[] = {KC_F, KC_G, COMBO_END};
 const uint16_t PROGMEM cmb_paste[] = {KC_V, KC_B, COMBO_END};
-const uint16_t PROGMEM cmb_undo[] = {KC_H, KC_J, COMBO_END};
+const uint16_t PROGMEM cmb_undo[] = {KC_G, KC_B, COMBO_END};
 const uint16_t PROGMEM cmb_i3drun[] = {KC_X, KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM cmb_i3tab[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM cmb_lcbr[] = {KC_U, KC_I, COMBO_END};
@@ -146,21 +146,21 @@ bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT(
-       KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    MEH(KC_E),
-      KC_CAPS,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                        KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, MEH(KC_C),
+       KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    KC_BSPC,
+      KC_CAPS,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                        KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, KC_ENT,
         LOREM, KC_LSFT,    KC_X,    KC_C,    KC_V,    KC_B,                        KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_RSFT, KC_NO,
                                             MO(5),   MO(2),   MO(3),      _SYMENT, KC_SPC,   MO(5)
   ),
   [1] = LAYOUT(
       KC_TRNS,  KC_GRV, KC_PERC, KC_NUHS, KC_AMPR, KC_PLUS,                        KC_NO,    KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_TRNS,
-      KC_TRNS, KC_NUBS, KC_PAST, KC_EXLM, KC_QUOT, S(KC_2),                        KC_NO,    _LCTL,    _GUI,    _ALT,    _MEH,     KC_TRNS,
+      KC_TRNS, KC_NUBS, KC_PAST, KC_EXLM, KC_QUOT, S(KC_2),                        KC_NO,    _LCTL,    _GUI,    _ALT,    _MEH,    KC_TRNS,
       KC_TRNS, S(KC_3),   _PIPE, _ATSIGN,  KC_DLR,   KC_NO,                        KC_NO,    _SCTL,    _SGUI,   _SALT,   KC_TRNS, KC_TRNS,
                                             KC_NO,  TMXPRV,  TMXNXT,      KC_TRNS, KC_TRNS,  KC_TRNS
   ),
   [2] = LAYOUT(
-      KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                        KC_PGUP,  _UNDSCR,  KC_MINS, KC_EQL,   KC_NO,  KC_TRNS,
-      KC_TRNS,    _MEH,    _ALT,    _GUI,   _LCTL,   MO(3),                        KC_LEFT,  KC_DOWN,  KC_UP,   KC_RIGHT, KC_NO,  KC_TRNS,
-      KC_TRNS, KC_TRNS,   _SALT,   _SGUI,   _SCTL,   KC_NO,                        KC_PGDN,  _TILDE,   KC_SLSH, KC_QUES,  KC_NO,  KC_TRNS,
+      KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                        KC_PGUP,  _UNDSCR,  KC_MINS, KC_EQL,   KC_HOME, MEH(KC_E),
+      KC_TRNS,    _MEH,    _ALT,    _GUI,   _LCTL, KC_TRNS,                        KC_LEFT,  KC_DOWN,  KC_UP,   KC_RIGHT, KC_NO,   MEH(KC_C),
+      KC_TRNS, KC_TRNS,   _SALT,   _SGUI,   _SCTL,   KC_NO,                        KC_PGDN,  _TILDE,   KC_SLSH, KC_QUES,  KC_END,  KC_TRNS,
                                             KC_NO, KC_TRNS,   KC_NO,      KC_DEL,  KC_BSPC,  KC_TRNS
   ),
   [3] = LAYOUT(
@@ -176,10 +176,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             KC_NO,   FFPRV,   FFNXT,     KC_TRNS,  KC_NO,    KC_TRNS
   ),
   [5] = LAYOUT(
-        KC_NO, _I3QUIT, _I3TABS, G(KC_E),  _I3RST,  KC_F12,                        KC_NO,    G(KC_7),  G(KC_8), G(KC_9), _I3ASCR,   KC_TRNS,
+        KC_NO, _I3QUIT, _I3TABS, G(KC_E),  _I3RST,  KC_F12,                        G(KC_0),  G(KC_7),  G(KC_8), G(KC_9), _I3ASCR,   KC_TRNS,
         KC_NO,   KC_NO, _I3STCK,   KC_NO, KC_LSFT,   KC_NO,                        _I3MV,    G(KC_4),  G(KC_5), G(KC_6),  _I3SCR,   KC_TRNS,
       KC_TRNS, KC_TRNS, G(KC_X),   KC_NO,   KC_NO,   KC_NO,                        KC_NO,    G(KC_1),  G(KC_2), G(KC_3), _I3RSCR,   KC_TRNS,
-                                          KC_TRNS,  _I3SPC,  _I3TAB,       KC_NO,  G(KC_0),  KC_TRNS
+                                          KC_TRNS,  _I3SPC,  _I3TAB,       KC_NO,  _I3SPC,   KC_TRNS
   )
 };
 #ifdef OLED_ENABLE
