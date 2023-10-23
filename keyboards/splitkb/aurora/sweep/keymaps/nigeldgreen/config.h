@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 #define TAPPING_TERM 190
+#define HOLD_ON_OTHER_KEY_PRESS
 #define RETRO_TAPPING_PER_KEY
 #define LED_CAPS_LOCK_PIN 24
 #define LED_PIN_ON_STATE 0
