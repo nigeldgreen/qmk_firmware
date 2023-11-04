@@ -108,13 +108,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       QK_BOOT,   KC_F7,   KC_F8,   KC_F9,  KC_F10,        KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,
       KC_NO  ,   KC_F4,   KC_F5,   KC_F6,  KC_F11,        KC_NO,   _LCTL,   _GUI,    _ALT,     _MEH,
       KC_TRNS,   KC_F1,   KC_F2,   KC_F3,  KC_F12,        KC_NO,   _SCTL,   _SGUI,   _SALT,    KC_NO,
-                                   MO(6),   KC_NO,        KC_TRNS, KC_NO
+                                   KC_NO,   KC_NO,        KC_TRNS, KC_NO
   ),
-  [6] = LAYOUT(
-     S(G(KC_Q)), S(G(KC_W)), G(KC_E), S(G(KC_R)),  KC_NO,             S(G(KC_0)),    G(KC_7),    G(KC_8),  G(KC_9),  KC_NO,
-     KC_NO, S(G(KC_S)),     KC_NO,    KC_LSFT,     KC_NO,             S(G(KC_COMM)), G(KC_4),    G(KC_5),  G(KC_6),  KC_NO,
-   KC_TRNS,    KC_NO,     KC_NO,    KC_NO,       KC_NO,             KC_NO,         G(KC_1),    G(KC_2),  G(KC_3),  KC_NO,
-                                    KC_TRNS, G(KC_TAB),             KC_NO,         G(KC_0)
-  ),
-
 };
