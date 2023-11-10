@@ -17,7 +17,6 @@
 #define ATSIGN S(KC_QUOT)
 #define UNDSCR S(KC_MINS)
 #define TILDE S(KC_NUHS)
-#define COLON S(KC_SCLN)
 /* Define some shortcuts for I3 */
 #define I3RST S(G(KC_P))
 #define I3QUT S(G(KC_Q))
@@ -77,7 +76,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT(
     KC_NO,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                                    KC_J,    KC_L,    KC_U,    KC_O,     KC_Y,    KC_NO,
-    KC_NO,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                                    KC_M,    KC_N,   KC_E,    KC_I,      KC_SCLN, KC_NO,
+    KC_NO,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                                    KC_M,    KC_N,    KC_E,    KC_I,     KC_SCLN, KC_NO,
     KC_NO, SC_LSPO,    KC_X,    KC_C,    KC_D,    KC_V,   KC_NO, KC_NO,    KC_NO, KC_NO,   KC_K,    KC_H,    KC_COMM, KC_DOT,   SC_RSPC, KC_NO,
                                KC_NO,   MO(6),  SYMTAB,  NUMESC, KC_NO,    KC_NO, FUNENT,  SYMSPC,  MO(6),   KC_NO
   ),
@@ -95,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [3] = LAYOUT(
     KC_NO,   DF(0),   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                    KC_HOME, UNDSCR,  KC_MINS, KC_EQL,   CW_TOGG, KC_NO,
-    KC_NO,   DF(1),    _ALT,    _GUI,   _LCTL,  TMXPRV,                                    KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, COLON,   KC_NO,
+    KC_NO,   DF(1),    _ALT,    _GUI,   _LCTL,  TMXPRV,                                    KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_NO,   KC_NO,
     KC_NO,   KC_NO,   _SALT,   _SGUI,   _SCTL,  TMXNXT,   KC_NO, KC_NO,    KC_NO, KC_NO,   KC_END,  TILDE,   KC_SLSH, KC_QUES,  KC_NO,   KC_NO,
                                KC_NO,   KC_NO, KC_TRNS,   KC_NO, KC_NO,    KC_NO, KC_DEL,  KC_BSPC, KC_NO,   KC_NO
   ),
