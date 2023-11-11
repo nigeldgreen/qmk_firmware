@@ -130,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,        KC_J,    KC_L,    KC_U,    KC_Y,     KC_SCLN,
          KC_A,    KC_R,    KC_S,    KC_T,    KC_G,        KC_M,    KC_N,    KC_E,    KC_I,     KC_O,
          SFTZ,    KC_X,    KC_C,    KC_D,    KC_V,        KC_K,    KC_H,    KC_COMM, KC_DOT,   KC_RSFT,
-                                  SYMTAB,  NUMESC,        FUNENT,  SYMSPC
+                                  SYMTAB,   TD(0),        FUNENT,  SYMSPC
   ),
   [1] = LAYOUT(
          KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,        KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,
@@ -169,3 +169,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     KC_TRNS,     KC_NO,     KC_NO,   G(KC_SPC)
   ),
 };
+// USe tap dance to define our leader key
+tap_dance_action_t tap_dance_actions[] = {
+    ACTION_TAP_DANCE_DOUBLE(QK_LEAD, NUMESC),
+};
+
+// Now define all of our leader key setup
+void leader_start_user(void) {
+    // Do something when the leader key is pressed
+}
+
+void leader_end_user(void) {
+    if (leader_sequence_one_key(KC_F)) {
+        SEND_STRING("QMK is awesome.");
+    } else if (leader_sequence_two_keys(KC_F, KC_F)) {
+        tap_code16(KC_TAB);
+        // Cut, copy, paste
+    } else if (leader_sequence_one_key(KC_X)) {
+        tap_code16(C(KC_X));
+    } else if (leader_sequence_two_keys(KC_X, KC_X)) {
+        tap_code16(S(C(KC_X)));
+    } else if (leader_sequence_one_key(KC_C)) {
+        tap_code16(C(KC_C));
+    } else if (leader_sequence_two_keys(KC_C, KC_C)) {
+        tap_code16(S(C(KC_C)));
+    } else if (leader_sequence_one_key(KC_V)) {
+        tap_code16(C(KC_V));
+    } else if (leader_sequence_two_keys(KC_V, KC_V)) {
+        tap_code16(S(C(KC_V)));
+        // Undo
+    } else if (leader_sequence_one_key(KC_Z)) {
+        tap_code16(KC_X);
+    }
+}
