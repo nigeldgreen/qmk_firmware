@@ -137,15 +137,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT(
-       KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                        KC_J,     KC_L,     KC_U,    KC_O,    KC_Y,    KC_BSPC,
-      CW_TOGG,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                        KC_M,     KC_N,     KC_E,    KC_I,    KC_SCLN, KC_ENT,
-        LOREM, KC_LSFT,    KC_X,    KC_C,    KC_D,    KC_V,                        KC_K,     KC_H,     KC_COMM, KC_DOT,  KC_RSFT, KC_NO,
-                                            MO(6),  SYMTAB,  NUMESC,       FUNENT, SYMSPC,   MO(6)
-  ),
-  [1] = LAYOUT(
        KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    KC_BSPC,
       CW_TOGG,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                        KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, KC_ENT,
         LOREM, SC_LSPO,    KC_X,    KC_C,    KC_V,    KC_B,                        KC_N,     KC_M,     KC_COMM, KC_DOT,  SC_RSPC, KC_NO,
+                                            MO(6),  SYMTAB,  NUMESC,       FUNENT, SYMSPC,   MO(6)
+  ),
+  [1] = LAYOUT(
+       KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                        KC_J,     KC_L,     KC_U,    KC_O,    KC_Y,    KC_BSPC,
+      CW_TOGG,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                        KC_M,     KC_N,     KC_E,    KC_I,    KC_SCLN, KC_ENT,
+        LOREM, KC_LSFT,    KC_X,    KC_C,    KC_D,    KC_V,                        KC_K,     KC_H,     KC_COMM, KC_DOT,  KC_RSFT, KC_NO,
                                             MO(6),  SYMTAB,  NUMESC,       FUNENT, SYMSPC,   MO(6)
   ),
   [2] = LAYOUT(
@@ -190,10 +190,10 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 void oled_render_layer_state(void) {
     switch(get_highest_layer(layer_state|default_layer_state)) {
         case 0:
-            oled_write_P(PSTR("Colemak\n"), false);
+            oled_write_P(PSTR("QWERTY\n"), false);
             break;
         case 1:
-            oled_write_P(PSTR("QWERTY\n"), false);
+            oled_write_P(PSTR("Colemak\n"), false);
             break;
         case 2:
             oled_write_P(PSTR("LEFT SYMBOLS\n"), false);
